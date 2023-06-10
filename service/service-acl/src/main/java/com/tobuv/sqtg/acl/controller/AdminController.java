@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理 前端控制器
@@ -80,6 +81,20 @@ public class AdminController {
     @DeleteMapping("batchRemove")
     public Result batchRemove(@RequestBody List<Long> idList) {
         adminService.removeByIds(idList);
+        return Result.ok(null);
+    }
+
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{adminId}")
+    public Result toAssign(@PathVariable Long adminId) {
+        Map<String, Object> roleMap = roleService.findRoleByUserId(adminId);
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestParam Long adminId,@RequestParam Long[] roleId) {
+        roleService.saveUserRoleRealtionShip(adminId,roleId);
         return Result.ok(null);
     }
 }
