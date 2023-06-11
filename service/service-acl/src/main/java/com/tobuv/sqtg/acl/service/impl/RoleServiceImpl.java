@@ -51,7 +51,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role>
 	 */
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void saveUserRoleRealtionShip(Long adminId, Long[] roleIds) {
+	public void saveUserRoleRelationShip(Long adminId, Long[] roleIds) {
 		//删除用户分配的角色数据
 		adminRoleService.remove(new QueryWrapper<AdminRole>().eq("admin_id", adminId));
 

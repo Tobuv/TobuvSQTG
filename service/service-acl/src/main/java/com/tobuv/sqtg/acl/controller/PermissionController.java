@@ -1,6 +1,7 @@
 package com.tobuv.sqtg.acl.controller;
 
 import com.tobuv.sqtg.acl.service.PermissionService;
+import com.tobuv.sqtg.acl.service.RoleService;
 import com.tobuv.sqtg.common.result.Result;
 import com.tobuv.sqtg.model.acl.Permission;
 import io.swagger.annotations.Api;
@@ -18,6 +19,9 @@ public class PermissionController {
 
     @Autowired
     private PermissionService permissionService;
+
+    @Autowired
+    private RoleService roleService;
 
     //查询所有菜单
     //    url: `${api_name}`,
@@ -58,6 +62,26 @@ public class PermissionController {
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable Long id) {
         permissionService.removeChildById(id);
+        return Result.ok(null);
+    }
+
+    //更具角色获取权限数据
+    //    url: `${api_name}/toAssign/${roleId}`,
+    //    method: 'get'
+    @ApiOperation("获取角色权限")
+    @GetMapping("/toAssign/{roleId}")
+    public Result toAssign(@PathVariable Long roleId){
+        List<Permission> permissionMap = permissionService.findPermissionByRoleId(roleId);
+        return Result.ok(permissionMap);
+    }
+
+    //    url: `${api_name}/doAssign`,
+    //    method: "post",
+    //    params: {roleId, permissionId}
+    @ApiOperation(value = "根据角色分配权限")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestParam Long roleId,@RequestParam Long[] permissionId) {
+        permissionService.saveRolePermissionRelationShip(roleId,permissionId);
         return Result.ok(null);
     }
 }

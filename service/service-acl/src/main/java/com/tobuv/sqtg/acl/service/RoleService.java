@@ -17,7 +17,7 @@ public interface RoleService extends IService<Role> {
 	 * @param adminId
 	 * @param roleIds
 	 */
-	void saveUserRoleRealtionShip(Long adminId, Long[] roleIds);
+	void saveUserRoleRelationShip(Long adminId, Long[] roleIds);
 
 	/**
 	 * 根据用户获取角色数据

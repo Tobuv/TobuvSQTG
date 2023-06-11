@@ -94,7 +94,7 @@ public class AdminController {
     @ApiOperation(value = "根据用户分配角色")
     @PostMapping("/doAssign")
     public Result doAssign(@RequestParam Long adminId,@RequestParam Long[] roleId) {
-        roleService.saveUserRoleRealtionShip(adminId,roleId);
+        roleService.saveUserRoleRelationShip(adminId,roleId);
         return Result.ok(null);
     }
 }

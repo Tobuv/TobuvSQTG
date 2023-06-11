@@ -1,18 +1,29 @@
 package com.tobuv.sqtg.acl.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tobuv.sqtg.acl.mapper.PermissionMapper;
+import com.tobuv.sqtg.acl.mapper.RolePermissionMapper;
 import com.tobuv.sqtg.acl.service.PermissionService;
+import com.tobuv.sqtg.acl.service.RolePermissionService;
 import com.tobuv.sqtg.acl.utils.PermissionHelper;
 import com.tobuv.sqtg.model.acl.Permission;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.tobuv.sqtg.model.acl.RolePermission;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements PermissionService {
+
+    @Autowired
+    private RolePermissionService rolePermissionService;
     //查询所有菜单
     @Override
     public List<Permission> queryAllPermission() {
@@ -41,6 +52,49 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 
         //调用方法根据多个菜单id删除
         baseMapper.deleteBatchIds(idList);
+    }
+
+    //根据用户查询权限
+    @Override
+    public List<Permission> findPermissionByRoleId(Long roleId) {
+        //查询所有权限
+        List<Permission> allPermissionList =
+                baseMapper.selectList(null);
+        //根据roleId查询对应的权限
+        LambdaQueryWrapper<RolePermission> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(RolePermission::getRoleId, roleId);
+        List<RolePermission> rolePermissionList = rolePermissionService.list(wrapper);
+
+        List<Long> permissionIdList =
+                rolePermissionList.stream()
+                        .map(item -> item.getPermissionId())
+                        .collect(Collectors.toList());
+        for (Permission p : allPermissionList) {
+            if(permissionIdList.contains(p.getId())){
+                p.setSelect(true);
+            }
+        }
+
+        List<Permission> allPermissions = PermissionHelper.buildPermission(allPermissionList);
+        return allPermissions;
+    }
+
+    //分配权限
+    @Override
+    public void saveRolePermissionRelationShip(Long roleId, Long[] permissionIds) {
+        //1 删除roleId原有的权限
+        LambdaQueryWrapper<RolePermission> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(RolePermission::getRoleId, roleId);
+        rolePermissionService.remove(wrapper);
+        //2 重新分配
+        List<RolePermission> list = new ArrayList<>();
+        for (Long permissionId : permissionIds) {
+            RolePermission rolePermission = new RolePermission();
+            rolePermission.setPermissionId(permissionId);
+            rolePermission.setRoleId(roleId);
+            list.add(rolePermission);
+        }
+        rolePermissionService.saveBatch(list);
     }
 
     //重点：递归找当前菜单下面的所有子菜单
