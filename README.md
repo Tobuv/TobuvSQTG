@@ -170,4 +170,4 @@ public interface RolePermissionMapper extends BaseMapper<RolePermission> {
 
 ### 前端测试
 
-![image-20230611235312172](C:\Users\chengsongren\AppData\Roaming\Typora\typora-user-images\image-20230611235312172.png)
+![image-20230611235312172](https://pic-typora-nb.oss-cn-hangzhou.aliyuncs.com/img/image-20230611235312172.png)
