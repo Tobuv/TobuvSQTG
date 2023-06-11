@@ -12,7 +12,7 @@ import java.util.List;
  * OrderDetailActivity
  * </p>
  *
- * @author qy
+ * @author tobuv
  */
 @Data
 public class OrderMqVo implements Serializable {

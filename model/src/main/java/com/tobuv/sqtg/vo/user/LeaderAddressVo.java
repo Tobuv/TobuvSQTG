@@ -9,7 +9,7 @@ import lombok.Data;
  * UserAddress
  * </p>
  *
- * @author qy
+ * @author tobuv
  */
 @Data
 @ApiModel(description = "用户地址")

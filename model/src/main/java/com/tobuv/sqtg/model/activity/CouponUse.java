@@ -15,7 +15,7 @@ import java.util.Date;
  * CouponUse
  * </p>
  *
- * @author qy
+ * @author tobuv
  */
 @Data
 @ApiModel(description = "优惠券领取记录表")
