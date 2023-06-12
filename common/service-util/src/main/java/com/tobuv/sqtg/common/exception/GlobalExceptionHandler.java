@@ -23,6 +23,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CusException.class)
     @ResponseBody
     public Result error(CusException e){
-        return Result.fail(null);
+        return Result.build(null, e.getCode(), e.getMessage());
     }
 }
