@@ -1,0 +1,24 @@
+server:
+  port: 8203
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shequ-product?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+aliyun:
+  endpoint: oss-cn-beijing.aliyuncs.com
+  keyid: LTAI4G22FRKRSBQSCLzrRSF8
+  keysecret: k0GP0eaCmfT7bpHhLzVM1ByJK9w2Ko
+  bucketname: tobuv-sqtg
