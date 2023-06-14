@@ -32,18 +32,18 @@ public interface ProductFeignClient {
 //    @GetMapping("/api/product/inner/getSkuInfo/{skuId}")
 //    public SkuInfo getSkuInfo(@PathVariable("skuId") Long skuId);
 //
-//    //根据skuId列表得到sku信息列表
-//    @PostMapping("/api/product/inner/findSkuInfoList")
-//    public List<SkuInfo> findSkuInfoList(@RequestBody List<Long> skuIdList);
-//
+    //根据skuId列表得到sku信息列表
+    @PostMapping("/api/product/inner/findSkuInfoList")
+    public List<SkuInfo> findSkuInfoList(@RequestBody List<Long> skuIdList);
+
 //    //根据分类id获取分类列表
 //    @PostMapping("/api/product/inner/findCategoryList")
 //    public List<Category> findCategoryList(@RequestBody List<Long> categoryIdList);
 //
-//    //根据关键字匹配sku列表
-//    @GetMapping("/api/product/inner/findSkuInfoByKeyword/{keyword}")
-//    public List<SkuInfo> findSkuInfoByKeyword(@PathVariable("keyword") String keyword);
-//
+    //根据关键字匹配sku列表
+    @GetMapping("/api/product/inner/findSkuInfoByKeyword/{keyword}")
+    public List<SkuInfo> findSkuInfoByKeyword(@PathVariable("keyword") String keyword);
+
 //    //验证和锁定库存
 //    @PostMapping("/api/product/inner/checkAndLock/{orderNo}")
 //    public Boolean checkAndLock(@RequestBody List<SkuStockLockVo> skuStockLockVoList,

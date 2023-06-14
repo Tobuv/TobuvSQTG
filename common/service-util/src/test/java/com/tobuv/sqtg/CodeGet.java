@@ -19,7 +19,7 @@ public class CodeGet {
         // 2、全局配置
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D:\\java-workspace\\tobuv-sqtg-parent\\service\\service-product"+"/src/main/java");
+        gc.setOutputDir("D:\\java-workspace\\tobuv-sqtg-parent\\service\\service-activity"+"/src/main/java");
 
         gc.setServiceName("%sService");	//去掉Service接口的首字母I
         gc.setAuthor("tobuv");
@@ -28,7 +28,7 @@ public class CodeGet {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/shequ-product?serverTimezone=GMT%2B8&useSSL=false");
+        dsc.setUrl("jdbc:mysql://localhost:3306/shequ-activity?serverTimezone=GMT%2B8&useSSL=false");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
@@ -38,7 +38,7 @@ public class CodeGet {
         // 4、包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.tobuv.sqtg");
-        pc.setModuleName("product"); //模块名
+        pc.setModuleName("activity"); //模块名
         pc.setController("controller");
         pc.setService("service");
         pc.setMapper("mapper");
@@ -47,7 +47,7 @@ public class CodeGet {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("attr", "attr_group", "category", "sku_info", "sku_attr_value", "sku_image", "sku_poster");
+        strategy.setInclude("activity_info", "activity_rule", "activity_sku", "coupon_info", "coupon_range", "coupon_use");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

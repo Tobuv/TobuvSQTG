@@ -36,5 +36,15 @@ public class ProductInnnerController {
         return skuInfoService.getById(skuId);
     }
 
+    //根据skuId列表得到sku信息列表
+    @PostMapping("inner/findSkuInfoList")
+    public List<SkuInfo> findSkuInfoList(@RequestBody List<Long> skuIdList) {
+        return skuInfoService.findSkuInfoList(skuIdList);
+    }
 
+    //根据关键字匹配sku列表
+    @GetMapping("inner/findSkuInfoByKeyword/{keyword}")
+    public List<SkuInfo> findSkuInfoByKeyword(@PathVariable("keyword") String keyword) {
+        return skuInfoService.findSkuInfoByKeyword(keyword);
+    }
 }
