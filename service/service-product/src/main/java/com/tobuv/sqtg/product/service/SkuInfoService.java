@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tobuv.sqtg.model.product.SkuInfo;
 import com.tobuv.sqtg.vo.product.SkuInfoQueryVo;
 import com.tobuv.sqtg.vo.product.SkuInfoVo;
+import com.tobuv.sqtg.vo.product.SkuStockLockVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -31,4 +34,14 @@ public interface SkuInfoService extends IService<SkuInfo> {
     void publish(Long skuId, Integer status);
 
     void isNewPerson(Long skuId, Integer status);
+
+//    List<SkuInfo> findSkuInfoList(List<Long> skuIdList);
+//
+//    List<SkuInfo> findSkuInfoByKeyword(String keyword);
+//
+//    List<SkuInfo> findNewPersonSkuInfoList();
+//
+//    SkuInfoVo getSkuInfoVo(Long skuId);
+//
+//    Boolean checkAndLock(List<SkuStockLockVo> skuStockLockVoList, String orderNo);
 }
