@@ -26,7 +26,7 @@ import java.util.List;
 @Api(tags = "仓库接口")
 @RestController
 @RequestMapping("/admin/sys/ware")
-@CrossOrigin
+//@CrossOrigin
 public class WareController {
 
     @Autowired

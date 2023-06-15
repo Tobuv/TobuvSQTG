@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 角色管理
  */
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin/acl/role")
 @Api(tags = "角色管理")

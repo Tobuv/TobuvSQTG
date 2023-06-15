@@ -22,7 +22,7 @@ import java.util.List;
 @Api(tags = "地区接口")
 @RestController
 @RequestMapping("/admin/sys/region")
-@CrossOrigin
+//@CrossOrigin
 public class RegionController {
 
     @Autowired
