@@ -3,6 +3,7 @@ package com.tobuv.sqtg.activity.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tobuv.sqtg.model.activity.CouponRange;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -12,6 +13,7 @@ import com.tobuv.sqtg.model.activity.CouponRange;
  * @author tobuv
  * @since 2023-06-14
  */
+@Repository
 public interface CouponRangeMapper extends BaseMapper<CouponRange> {
 
 }
