@@ -1,6 +1,7 @@
 package com.tobuv.sqtg.user.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tobuv.sqtg.common.auth.AuthContextHolder;
 import com.tobuv.sqtg.common.constant.RedisConst;
 import com.tobuv.sqtg.common.exception.CusException;
 import com.tobuv.sqtg.common.result.Result;
@@ -109,15 +110,15 @@ public class WeixinApiController {
         return Result.ok(map);
     }
 
-//    @PostMapping("/auth/updateUser")
-//    @ApiOperation(value = "更新用户昵称与头像")
-//    public Result updateUser(@RequestBody User user) {
-//        //获取当前登录用户id
-//        User user1 = userService.getById(AuthContextHolder.getUserId());
-//        //把昵称更新为微信用户
-//        user1.setNickName(user.getNickName().replaceAll("[ue000-uefff]", "*"));
-//        user1.setPhotoUrl(user.getPhotoUrl());
-//        userService.updateById(user1);
-//        return Result.ok(null);
-//    }
+    @PostMapping("/auth/updateUser")
+    @ApiOperation(value = "更新用户昵称与头像")
+    public Result updateUser(@RequestBody User user) {
+        //获取当前登录用户id
+        User user1 = userService.getById(AuthContextHolder.getUserId());
+        //把昵称更新为微信用户
+        user1.setNickName(user.getNickName().replaceAll("[ue000-uefff]", "*"));
+        user1.setPhotoUrl(user.getPhotoUrl());
+        userService.updateById(user1);
+        return Result.ok(null);
+    }
 }
