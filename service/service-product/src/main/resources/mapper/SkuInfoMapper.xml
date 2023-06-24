@@ -22,4 +22,10 @@
     <update id="unlockStock">
         update sku_info set lock_stock = lock_stock - #{skuNum} where id = #{skuId}
     </update>
+
+    <!--减库存-->
+    <update id="minusStock">
+        update sku_info set stock = stock - #{skuNum},lock_stock = lock_stock - #{skuNum},
+                            sale = sale + #{skuNum} where id=#{skuId}
+    </update>
 </mapper>
