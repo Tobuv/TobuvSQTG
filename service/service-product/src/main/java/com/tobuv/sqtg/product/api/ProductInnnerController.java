@@ -53,4 +53,32 @@ public class ProductInnnerController {
     public List<SkuInfo> findSkuInfoByKeyword(@PathVariable("keyword") String keyword) {
         return skuInfoService.findSkuInfoByKeyword(keyword);
     }
+
+    //获取所有分类
+    @GetMapping("inner/findAllCategoryList")
+    public List<Category> findAllCategoryList() {
+        List<Category> categoryList = categoryService.list();
+        return categoryList;
+    }
+
+    //获取新人专享商品
+    @GetMapping("inner/findNewPersonSkuInfoList")
+    public List<SkuInfo> findNewPersonSkuInfoList() {
+        List<SkuInfo> list = skuInfoService.findNewPersonSkuInfoList();
+        return list;
+    }
+
+    //根据skuId获取sku信息
+    @GetMapping("inner/getSkuInfoVo/{skuId}")
+    public SkuInfoVo getSkuInfoVo(@PathVariable Long skuId) {
+        return skuInfoService.getSkuInfoVo(skuId);
+    }
+
+    //验证和锁定库存
+    @ApiOperation(value = "锁定库存")
+    @PostMapping("inner/checkAndLock/{orderNo}")
+    public Boolean checkAndLock(@RequestBody List<SkuStockLockVo> skuStockLockVoList,
+                                @PathVariable String orderNo) {
+        return skuInfoService.checkAndLock(skuStockLockVoList,orderNo);
+    }
 }

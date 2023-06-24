@@ -3,6 +3,9 @@ package com.tobuv.sqtg.activity.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tobuv.sqtg.model.activity.CouponInfo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +17,9 @@ import com.tobuv.sqtg.model.activity.CouponInfo;
  */
 public interface CouponInfoMapper extends BaseMapper<CouponInfo> {
 
+    List<CouponInfo> selectCouponInfoList(@Param("skuId") Long id,
+                                          @Param("categoryId") Long categoryId,
+                                          @Param("userId") Long userId);
+
+    List<CouponInfo> selectCartCouponInfoList(Long userId);
 }

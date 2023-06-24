@@ -18,6 +18,16 @@ public class LoginMvcConfigurerAdapter extends WebMvcConfigurationSupport {
         registry.addInterceptor(new UserLoginInterceptor(redisTemplate))
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/user/weixin/wxLogin/*");
+
         super.addInterceptors(registry);
+    }
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("doc.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**").addResourceLocations(
+                "classpath:/META-INF/resources/webjars/");
     }
 }

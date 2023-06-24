@@ -14,13 +14,11 @@ public interface SkuService {
 
     //下架
     void lowerSku(Long skuId);
-//
-//    //获取爆款商品
-//    List<SkuEs> findHotSkuList();
-//
-//    //查询分类商品
-//    Page<SkuEs> search(Pageable pageable, SkuEsQueryVo skuEsQueryVo);
-//
-//    //更新商品热度
-//    void incrHotScore(Long skuId);
+
+    List<SkuEs> findHotSkuList();
+
+    Page<SkuEs> search(Pageable pageable, SkuEsQueryVo skuEsQueryVo);
+
+    void incrHotScore(Long skuId);
+
 }
